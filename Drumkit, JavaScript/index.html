@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
+  <title> Jade's Drum </title>
   <!-- style sheet CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
+<!-- keys defined using keycode.info -->
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -59,7 +59,15 @@
   <audio data-key="76" src="sounds/tink.wav"></audio> -->
 
 <script>
-
+window.addEventListener('keydown', function(e) {
+  // selecting the audio file when pressing a key
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+if(!audio) return; // stops the function from running if there is no corresponding key
+audio.currentTime = 0; //restarts the audio every time you press a key, so you can have sunds every single time you press it
+audio.play();
+key.classList.add('playing');
+});
 </script>
 
 
